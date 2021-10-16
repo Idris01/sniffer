@@ -13,7 +13,7 @@ def sniff_schema(path, output="./schema"):
         content = json.loads(content)
 
         # convert the content to sniffed data
-        # Note: the return type is dict, a datatype that is
+        # Note: the return type is dict, a python datatype that is
         # easily used to represent json
         sniffed_data = sniffer(content)
 
@@ -31,18 +31,19 @@ def sniff_schema(path, output="./schema"):
 if __name__ == "__main__":
     try:
         # read the path to the json file supplied from the terminal
-        # throws an IndexError if no argument is supplied
+        # raise an IndexError if no argument is supplied
         path = sys.argv[1]
 
         # checks if the provided path actually exists
-        # throws Assertion Error
+        # raises Assertion Error if the path name does not exist
         assert(Path(path).exists()), f"{path} does not exist"
 
         # checks if the given file is a json file
-        # throws Assertion Error
+        # throws Assertion Error if the file in the path is not '.json'
         assert(Path(path).name.endswith('.json')
                ), "Only '.json' file extension expected"
 
+        # process the JSON content of the supplied "path"
         sniff_schema(path)
 
     except IndexError:

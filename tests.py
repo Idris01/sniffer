@@ -8,7 +8,7 @@ class SnifferTest(TestCase):
         self.source = {"message": {"battle": {"id": "KLMNOPQR"}, "age": 30,
                                    "participantIds": ["ABCDEF", "ABCDEFGHI"],
                                    "publicFeeds": False,
-                                   "name": "Idris"}}
+                                   "name": "Idris", "acl": [], }}
 
     def tests_source_data_is_dict(self):
         # note: dict is json representation
@@ -43,3 +43,8 @@ class SnifferTest(TestCase):
         result = sniffer(self.source)
         name = result["name"]
         self.assertEqual(name["type"], "string")
+
+    def tests_empty_array_type_enum(self):
+        result = sniffer(self.source)
+        acl = result["acl"]   # Note that "acl" has an empty array, []
+        self.assertEqual(acl["type"], "enum")
