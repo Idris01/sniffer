@@ -28,4 +28,4 @@ the "message" key of a given ```.json``` file.
   i.e for our sample *data_1.json* the output is located in ```./schema/data_1_schema.json```
 
 ### To run the unittest
-```python
+```python -m unittest  tests.py```
